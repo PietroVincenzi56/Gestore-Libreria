@@ -56,4 +56,17 @@ public class Libro {
         this.score = score;
     }
 
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Libro libro = (Libro) obj;
+        return isbn != null && isbn.equals(libro.isbn);
+    }
+
+    @Override
+    public int hashCode() {
+        return isbn != null ? isbn.hashCode() : 0;
+    }
+
 }
