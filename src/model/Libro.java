@@ -56,6 +56,15 @@ public class Libro {
         this.score = score;
     }
 
+    public StatoLettura getStato() {
+        return stato;
+    }
+
+    public void setStato(StatoLettura stato) {
+        this.stato = stato;
+    }
+
+
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
