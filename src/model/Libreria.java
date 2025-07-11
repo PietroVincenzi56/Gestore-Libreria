@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Libreria {
     private ArrayList<Libro> libri = new ArrayList<>();
@@ -32,7 +33,7 @@ public class Libreria {
         return false;
     }
 
-    //in base allo stato lettura
+    //poi lo sposto
     public ArrayList<Libro> filtraLibri(StatoLettura s) {
         ArrayList<Libro> ret = new ArrayList<>();
             for (Libro i : libri) {
@@ -40,6 +41,22 @@ public class Libreria {
                     ret.add(i);
             }
         return ret;
+    }
+
+
+    public ArrayList<Libro> getLibri() {
+        ArrayList<Libro> ret = new ArrayList<>();
+        for (Libro i : libri) {
+            ret.add(new Libro(i));
+        }
+        return ret;
+    }
+
+    public void setLibri(List<Libro> caricata){
+        this.libri.clear();
+        for (Libro i : caricata) {
+            libri.add(i);
+        }
     }
 
 

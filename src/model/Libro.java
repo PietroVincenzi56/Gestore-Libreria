@@ -18,6 +18,15 @@ public class Libro {
 
     public Libro() {}
 
+
+    public Libro(Libro l) {
+        this.genere = l.getGenere();
+        this.isbn = l.getIsbn();
+        this.autore = l.getAutore();
+        this.titolo = l.getTitolo();
+    }
+
+
     public String getTitolo() {
         return titolo;
     }
