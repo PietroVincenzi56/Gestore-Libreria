@@ -6,4 +6,5 @@ import model.Libro;
 public interface FiltroLibro {
     boolean filter(Libro libro);
 
+
 }
