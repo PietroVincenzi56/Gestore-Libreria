@@ -33,17 +33,6 @@ public class Libreria {
         return false;
     }
 
-    //poi lo sposto
-    public ArrayList<Libro> filtraLibri(StatoLettura s) {
-        ArrayList<Libro> ret = new ArrayList<>();
-            for (Libro i : libri) {
-                if (i.getStato().equals(s))
-                    ret.add(i);
-            }
-        return ret;
-    }
-
-
     public ArrayList<Libro> getLibri() {
         ArrayList<Libro> ret = new ArrayList<>();
         for (Libro i : libri) {
