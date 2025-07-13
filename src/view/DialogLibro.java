@@ -17,6 +17,7 @@ public class DialogLibro extends JDialog {
     private JComboBox<StatoLettura> statoCombo;
     private Libro libroRisultato = null;
 
+
     public DialogLibro(JFrame parent) {
         this(parent, null);
     }
