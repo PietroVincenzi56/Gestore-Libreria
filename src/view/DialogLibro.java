@@ -33,15 +33,15 @@ public class DialogLibro extends JDialog {
         autoreField = new JTextField(libroEsistente != null ? libroEsistente.getAutore() : "");
         add(autoreField);
 
-        // Genere
-        add(new JLabel("Genere:"));
-        genereField = new JTextField(libroEsistente != null ? libroEsistente.getGenere() : "");
-        add(genereField);
-
         // ISBN
         add(new JLabel("ISBN:"));
         isbnField = new JTextField(libroEsistente != null ? libroEsistente.getIsbn() : "");
         add(isbnField);
+
+        // Genere
+        add(new JLabel("Genere:"));
+        genereField = new JTextField(libroEsistente != null ? libroEsistente.getGenere() : "");
+        add(genereField);
 
         // Valutazione
         add(new JLabel("Valutazione (0–5):"));
@@ -61,10 +61,10 @@ public class DialogLibro extends JDialog {
         JButton conferma = new JButton("OK");
         conferma.addActionListener(e -> {
             libroRisultato = new Libro(
-                    genereField.getText(),
-                    isbnField.getText(),
-                    autoreField.getText(),
                     titoloField.getText(),
+                    autoreField.getText(),
+                    isbnField.getText(),
+                    genereField.getText(),
                     (int) valutazioneSpinner.getValue(),
                     (StatoLettura) statoCombo.getSelectedItem()
             );

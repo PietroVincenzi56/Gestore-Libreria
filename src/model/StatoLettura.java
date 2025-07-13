@@ -10,9 +10,12 @@ public enum StatoLettura {
     StatoLettura(String label) {
         this.label = label;
     }
-
     @Override
     public String toString() {
-        return label;
+        return switch (this) {
+            case DA_LEGGERE -> "Non letto";
+            case IN_LETTURA -> "In lettura";
+            case LETTO -> "Letto";
+        };
     }
 }

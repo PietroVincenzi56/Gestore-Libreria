@@ -22,7 +22,7 @@ public class ListaLibri extends JPanel {
     public ListaLibri() {
         setLayout(new BorderLayout());
 
-        model = new DefaultTableModel(new String[]{"Titolo", "Autore", "Genere", "Stato", "Valutazione", "✏️", "🗑️"}, 0) {
+        model = new DefaultTableModel(new String[]{"Titolo", "Autore", "Genere", "Stato", "Valutazione", "Modifica", "Elimina"}, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return column == 5 || column == 6; // Solo Modifica e Rimuovi sono cliccabili
@@ -33,8 +33,8 @@ public class ListaLibri extends JPanel {
         tabella.setRowHeight(30);
 
         // Renderer per i pulsanti
-        tabella.getColumn("✏️").setCellRenderer(new ButtonRenderer());
-        tabella.getColumn("🗑️").setCellRenderer(new ButtonRenderer());
+        tabella.getColumn("Modifica").setCellRenderer(new ButtonRenderer());
+        tabella.getColumn("Elimina").setCellRenderer(new ButtonRenderer());
 
         // Listener click su pulsanti
         tabella.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -64,17 +64,17 @@ public class ListaLibri extends JPanel {
     }
 
     public void setLibri(List<Libro> nuoviLibri) {
-        libri = new ArrayList<>(nuoviLibri); // Copia difensiva
+        libri = new ArrayList<>(nuoviLibri);
         model.setRowCount(0);
         for (Libro libro : libri) {
             model.addRow(new Object[]{
                     libro.getTitolo(),
                     libro.getAutore(),
                     libro.getGenere(),
-                    libro.getStato(),
-                    libro.getScore(),
-                    "✏️",
-                    "🗑️"
+                    libro.getStato() != null ? libro.getStato().toString() : "N/D",
+                    libro.getScore() > 0 ? "⭐".repeat(libro.getScore()) : "N/D",
+                    "Modifica",
+                    "Elimina"
             });
         }
     }

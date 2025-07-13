@@ -8,12 +8,11 @@ public class Libro {
     private int score;
     private StatoLettura stato;
 
-
-    public Libro(String genere, String isbn, String autore, String titolo, int score, StatoLettura stato) {
-        this.genere = genere;
-        this.isbn = isbn;
-        this.autore = autore;
+    public Libro(String titolo, String autore, String isbn, String genere, int score, StatoLettura stato) {
         this.titolo = titolo;
+        this.autore = autore;
+        this.isbn = isbn;
+        this.genere = genere;
         this.score = score;
         this.stato = stato;
     }
@@ -26,6 +25,9 @@ public class Libro {
         this.isbn = l.getIsbn();
         this.autore = l.getAutore();
         this.titolo = l.getTitolo();
+        this.score = l.getScore();
+        this.stato = l.getStato();
+
     }
 
 
