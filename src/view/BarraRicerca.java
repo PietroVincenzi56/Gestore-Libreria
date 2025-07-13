@@ -18,6 +18,7 @@ public class BarraRicerca extends JPanel {
     private final JTextField campoGenere;
     private final JComboBox<StatoLettura> comboStato;
     private final JButton filtraBtn;
+    private final JButton annullaBtn;
     private final MainUI mainUI; // riferimento per aggiornare la lista
 
     public BarraRicerca(MainUI mainUI) {
@@ -27,6 +28,7 @@ public class BarraRicerca extends JPanel {
         campoGenere = new JTextField(10);
         comboStato = new JComboBox<>(StatoLettura.values());
         filtraBtn = new JButton("Filtra");
+        annullaBtn = new JButton("Annulla");
 
         setLayout(new FlowLayout(FlowLayout.LEFT));
         add(new JLabel("Titolo:"));
@@ -36,6 +38,7 @@ public class BarraRicerca extends JPanel {
         add(new JLabel("Stato:"));
         add(comboStato);
         add(filtraBtn);
+        add(annullaBtn);
 
         filtraBtn.addActionListener(e -> {
             try {
@@ -44,6 +47,16 @@ public class BarraRicerca extends JPanel {
                 throw new RuntimeException(ex);
             }
         });
+
+
+        annullaBtn.addActionListener(e -> {
+            try {
+                annulla();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
     }
 
     private void filtra() throws IOException {
@@ -65,5 +78,16 @@ public class BarraRicerca extends JPanel {
 
         mainUI.aggiornaLista(libri);
     }
+
+    private void annulla() throws IOException {
+            ArrayList<Libro> tutti = new ArrayList<>(LibreriaManager.getInstance().getListaLibri());
+            mainUI.aggiornaLista(tutti);
+
+            // Pulizia campi di ricerca
+            campoTitolo.setText("");
+            campoGenere.setText("");
+            comboStato.setSelectedIndex(0);
+        }
+
 }
 
