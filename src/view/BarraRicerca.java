@@ -10,6 +10,7 @@ import model.StatoLettura;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ItemEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -54,6 +55,15 @@ public class BarraRicerca extends JPanel {
         add(filtraBtn);
         add(annullaBtn);
 
+        comboOrdina.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                try {
+                    ordina((String) comboOrdina.getSelectedItem());
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
 
         filtraBtn.addActionListener(e -> {
             try {
@@ -72,6 +82,23 @@ public class BarraRicerca extends JPanel {
             }
         });
 
+
+
+    }
+
+    private void ordina(String selectedItem) throws IOException {
+        ArrayList<Libro> libri = new ArrayList<>(LibreriaManager.getInstance().getListaLibri());
+
+        String ordinamento = (String) comboOrdina.getSelectedItem();
+        if (ordinamento != null) {
+            switch (ordinamento) {
+                case "Titolo (A-Z)" -> libri.sort((l1, l2) -> l1.getTitolo().compareToIgnoreCase(l2.getTitolo()));
+                case "Autore (A-Z)" -> libri.sort((l1, l2) -> l1.getAutore().compareToIgnoreCase(l2.getAutore()));
+                case "Valutazione (Alta → Bassa)" -> libri.sort((l1, l2) -> Integer.compare(l2.getScore(), l1.getScore()));
+                case "Stato lettura" -> libri.sort((l1, l2) -> l1.getStato().compareTo(l2.getStato()));
+            }
+        }
+        mainUI.aggiornaLista(libri);
     }
 
     private void filtra() throws IOException {
@@ -89,16 +116,6 @@ public class BarraRicerca extends JPanel {
         }
         if (statoSelezionato instanceof StatoLettura stato) {
             libri = ApplicatoreFiltro.applicaFiltro(libri, new FiltraStato(stato));
-        }
-
-        String ordinamento = (String) comboOrdina.getSelectedItem();
-        if (ordinamento != null) {
-            switch (ordinamento) {
-                case "Titolo (A-Z)" -> libri.sort((l1, l2) -> l1.getTitolo().compareToIgnoreCase(l2.getTitolo()));
-                case "Autore (A-Z)" -> libri.sort((l1, l2) -> l1.getAutore().compareToIgnoreCase(l2.getAutore()));
-                case "Valutazione (Alta → Bassa)" -> libri.sort((l1, l2) -> Integer.compare(l2.getScore(), l1.getScore()));
-                case "Stato lettura" -> libri.sort((l1, l2) -> l1.getStato().compareTo(l2.getStato()));
-            }
         }
 
         mainUI.aggiornaLista(libri);
