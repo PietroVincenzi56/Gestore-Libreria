@@ -28,6 +28,7 @@ public class Main {
             System.err.println("Nessun file trovato, inizializzo libreria vuota.");
         }
 
+
         // Inizializza il singleton del manager
         LibreriaManager.init(libreria, dao);
 

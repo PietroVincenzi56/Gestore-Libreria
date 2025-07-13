@@ -6,17 +6,17 @@
   "score" : 5,
   "stato" : "LETTO"
 }, {
-  "titolo" : "a",
+  "titolo" : "Prova2",
   "autore" : "a",
-  "isbn" : "a",
-  "genere" : "a",
-  "score" : 4,
-  "stato" : "LETTO"
-}, {
-  "titolo" : "a",
-  "autore" : "a",
-  "isbn" : "a",
-  "genere" : "a",
+  "isbn" : "1243",
+  "genere" : "Saggio",
   "score" : 2,
   "stato" : "LETTO"
+}, {
+  "titolo" : "Ingegneria",
+  "autore" : "Gigi",
+  "isbn" : "54234",
+  "genere" : "manuale",
+  "score" : 1,
+  "stato" : "DA_LEGGERE"
 } ]
