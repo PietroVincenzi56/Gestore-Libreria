@@ -17,6 +17,10 @@ public class DialogLibro extends JDialog {
     private JComboBox<StatoLettura> statoCombo;
     private Libro libroRisultato = null;
 
+    public DialogLibro(JFrame parent) {
+        this(parent, null);
+    }
+
     public DialogLibro(JFrame parent, Libro libroEsistente) {
         super(parent, "Dettagli Libro", true);
         setLayout(new GridLayout(7, 2, 10, 10));

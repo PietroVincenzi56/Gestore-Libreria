@@ -30,43 +30,15 @@ public class MainUI extends JFrame implements Observer {
 
         JButton aggiungi = new JButton("+ Aggiungi libro");
         aggiungi.addActionListener(e -> {
-            JTextField titoloField = new JTextField();
-            JTextField autoreField = new JTextField();
-            JTextField isbnField = new JTextField();
-            JTextField genereField = new JTextField();
-            JComboBox<Integer> valutazioneBox = new JComboBox<>(new Integer[]{1, 2, 3, 4, 5});
-            JComboBox<StatoLettura> statoBox = new JComboBox<>(StatoLettura.values());
+            DialogLibro dialog = new DialogLibro(this);  // passa 'null' implicitamente
+            Libro nuovo = dialog.mostra();
 
-            JPanel panel = new JPanel(new GridLayout(0, 2));
-            panel.add(new JLabel("Titolo:"));
-            panel.add(titoloField);
-            panel.add(new JLabel("Autore:"));
-            panel.add(autoreField);
-            panel.add(new JLabel("ISBN:"));
-            panel.add(isbnField);
-            panel.add(new JLabel("Genere:"));
-            panel.add(genereField);
-            panel.add(new JLabel("Valutazione:"));
-            panel.add(valutazioneBox);
-            panel.add(new JLabel("Stato lettura:"));
-            panel.add(statoBox);
-
-            int result = JOptionPane.showConfirmDialog(this, panel, "Aggiungi Libro",
-                    JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-
-            if (result == JOptionPane.OK_OPTION) {
-                Libro nuovo = new Libro(
-                        titoloField.getText(),
-                        autoreField.getText(),
-                        isbnField.getText(),
-                        genereField.getText(),
-                        (Integer) valutazioneBox.getSelectedItem(),
-                        (StatoLettura) statoBox.getSelectedItem()
-                );
+            if (nuovo != null) {
                 try {
                     LibreriaManager.getInstance().addLibro(nuovo);
                 } catch (IOException ex) {
-                    throw new RuntimeException(ex);
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(this, "Errore durante il salvataggio del libro.", "Errore", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });add(aggiungi, BorderLayout.SOUTH);

@@ -1,4 +1,18 @@
 [ {
+  "titolo" : "Prova",
+  "autore" : "Pietro",
+  "isbn" : "123",
+  "genere" : "Giallo",
+  "score" : 5,
+  "stato" : "LETTO"
+}, {
+  "titolo" : "a",
+  "autore" : "a",
+  "isbn" : "a",
+  "genere" : "a",
+  "score" : 4,
+  "stato" : "LETTO"
+}, {
   "titolo" : "a",
   "autore" : "a",
   "isbn" : "a",
