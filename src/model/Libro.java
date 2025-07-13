@@ -9,11 +9,13 @@ public class Libro {
     private StatoLettura stato;
 
 
-    public Libro(String genere, String isbn, String autore, String titolo) {
+    public Libro(String genere, String isbn, String autore, String titolo, int score, StatoLettura stato) {
         this.genere = genere;
         this.isbn = isbn;
         this.autore = autore;
         this.titolo = titolo;
+        this.score = score;
+        this.stato = stato;
     }
 
     public Libro() {}

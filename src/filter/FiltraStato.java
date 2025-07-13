@@ -13,7 +13,7 @@ public class FiltraStato implements FiltroLibro {
 
     @Override
     public boolean filter(Libro libro) {
-        return libro.getStato().equals(stato);
+        return libro.getStato() != null && libro.getStato().equals(stato);
     }
 
 

@@ -1,5 +1,6 @@
 package model;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,15 +23,10 @@ public class Libreria {
         return null;
     }
 
-    public boolean modificaLibro(Libro l) {
-        for (Libro i : libri) {
-            if (i.equals(l)) {
-                removeLibro(i);
-                addLibro(l);
-                return true;
-            }
-        }
-        return false;
+    public boolean modificaLibro(Libro old, Libro neww) throws IOException {
+        removeLibro(old);
+        addLibro(neww);
+        return true;
     }
 
     public ArrayList<Libro> getLibri() {

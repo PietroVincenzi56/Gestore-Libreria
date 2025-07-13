@@ -4,7 +4,7 @@ import model.Libreria;
 import model.Libro;
 import persistance.LibreriaDAO;
 import persistance.LibreriaJsonDAO;
-import sun.jvm.hotspot.utilities.Observable;
+import java.util.Observable;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -61,15 +61,15 @@ public class LibreriaManager extends Observable {
         return true;
     }
 
-    public boolean modificaLibro(Libro libro) throws IOException {
-        libreria.modificaLibro(libro);
+    public boolean modificaLibro(Libro old, Libro neww) throws IOException {
+        libreria.modificaLibro(old, neww);
         salva();
         setChanged();
         notifyObservers();
         return true;
     }
 
-    public ArrayList<Libro> getiListaLibri() throws IOException {
+    public ArrayList<Libro> getListaLibri() throws IOException {
         return libreria.getLibri();
     }
 
