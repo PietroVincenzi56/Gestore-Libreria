@@ -12,6 +12,6 @@ public class FiltroGenere implements FiltroLibro {
 
     @Override
     public boolean filter(Libro libro) {
-        return libro.getGenere() != null && libro.getGenere().toLowerCase().contains(genere);
+        return libro.getGenere() != null && libro.getGenere().toLowerCase().contains(genere.toLowerCase());
     }
 }

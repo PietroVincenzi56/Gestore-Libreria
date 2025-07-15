@@ -11,7 +11,7 @@ public class FiltroAutore implements FiltroLibro {
 
     @Override
     public boolean filter(Libro libro) {
-        return libro.getAutore() != null && libro.getAutore().toLowerCase().contains(autore);
+        return libro.getAutore() != null && libro.getAutore().toLowerCase().contains(autore.toLowerCase());
     }
 }
 
