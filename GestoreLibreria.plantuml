@@ -1,0 +1,147 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class ApplicatoreFiltro {
+  + applicaFiltro(ArrayList<Libro>, FiltroLibro): ArrayList<Libro>
+}
+class BarraRicerca {
+  - mainUI: MainUI
+  - comboStato: JComboBox<StatoLettura>
+  - filtraBtn: JButton
+  - annullaBtn: JButton
+  - campoTitolo: JTextField
+  - comboOrdina: JComboBox<String>
+  - campoGenere: JTextField
+  - ordina(String): void
+  - filtra(): void
+  - annulla(): void
+}
+class DialogLibro {
+  - titoloField: JTextField
+  - genereField: JTextField
+  - autoreField: JTextField
+  - isbnField: JTextField
+  - valutazioneSpinner: JSpinner
+  - libroRisultato: Libro
+  - statoCombo: JComboBox<StatoLettura>
+  + mostra(): Libro
+}
+class FiltraStato {
+  - stato: StatoLettura
+  + filter(Libro): boolean
+}
+class FiltroAutore {
+  - autore: String
+  + filter(Libro): boolean
+}
+class FiltroGenere {
+  - genere: String
+  + filter(Libro): boolean
+}
+interface FiltroLibro << interface >> {
+  + filter(Libro): boolean
+}
+class FiltroTitolo {
+  - titolo: String
+  + filter(Libro): boolean
+}
+class Libreria {
+  - libri: ArrayList<Libro>
+  + addLibro(Libro): void
+  + getLibro(Libro): Libro
+  + setLibri(List<Libro>): void
+  + removeLibro(Libro): void
+  + modificaLibro(Libro, Libro): boolean
+  + getLibri(): ArrayList<Libro>
+}
+interface LibreriaDAO << interface >> {
+  + caricaLibreria(): List<Libro>
+  + salvaLibreria(List<Libro>): void
+}
+class LibreriaJsonDAO {
+  - mapper: ObjectMapper
+  - file: File
+  + caricaLibreria(): List<Libro>
+  + salvaLibreria(List<Libro>): void
+}
+class LibreriaManager {
+  - instance: LibreriaManager
+  - dao: LibreriaDAO
+  - libreria: Libreria
+  + getListaLibri(): ArrayList<Libro>
+  + getInstance(): LibreriaManager
+  + removeLibro(Libro): boolean
+  + carica(): void
+  + salva(): void
+  + init(Libreria, LibreriaDAO): void
+  + addLibro(Libro): boolean
+  + modificaLibro(Libro, Libro): boolean
+}
+class Libro {
+  - score: int
+  - stato: StatoLettura
+  - isbn: String
+  - autore: String
+  - genere: String
+  - titolo: String
+  + setGenere(String): void
+  + setScore(int): void
+  + hashCode(): int
+  + equals(Object): boolean
+  + setAutore(String): void
+  + getIsbn(): String
+  + setIsbn(String): void
+  + getAutore(): String
+  + getScore(): int
+  + setStato(StatoLettura): void
+  + getStato(): StatoLettura
+  + getTitolo(): String
+  + setTitolo(String): void
+  + getGenere(): String
+}
+class ListaLibri {
+  - model: DefaultTableModel
+  - libri: List<Libro>
+  - tabella: JTable
+  + setLibri(List<Libro>): void
+  - rimuoviLibro(Libro): void
+  - modificaLibro(Libro): void
+}
+class Main {
+  + main(String[]): void
+}
+class MainUI {
+  - barra: BarraRicerca
+  - tabella: ListaLibri
+  + aggiornaLista(ArrayList<Libro>): void
+  + update(Observable, Object): void
+}
+enum StatoLettura << enumeration >> {
+  + DA_LEGGERE: 
+  + IN_LETTURA: 
+  - label: String
+  + LETTO: 
+  + toString(): String
+  + valueOf(String): StatoLettura
+  + values(): StatoLettura[]
+}
+
+BarraRicerca      "1" *-[#595959,plain]-> "mainUI\n1" MainUI            
+DialogLibro       "1" *-[#595959,plain]-> "libroRisultato\n1" Libro             
+FiltraStato        -[#008200,dashed]-^  FiltroLibro       
+FiltraStato       "1" *-[#595959,plain]-> "stato\n1" StatoLettura      
+FiltroAutore       -[#008200,dashed]-^  FiltroLibro       
+FiltroGenere       -[#008200,dashed]-^  FiltroLibro       
+FiltroTitolo       -[#008200,dashed]-^  FiltroLibro       
+Libreria          "1" *-[#595959,plain]-> "libri\n*" Libro             
+LibreriaJsonDAO    -[#008200,dashed]-^  LibreriaDAO       
+LibreriaManager   "1" *-[#595959,plain]-> "libreria\n1" Libreria          
+LibreriaManager   "1" *-[#595959,plain]-> "dao\n1" LibreriaDAO       
+Libro             "1" *-[#595959,plain]-> "stato\n1" StatoLettura      
+ListaLibri        "1" *-[#595959,plain]-> "libri\n*" Libro             
+MainUI            "1" *-[#595959,plain]-> "barra\n1" BarraRicerca      
+MainUI            "1" *-[#595959,plain]-> "tabella\n1" ListaLibri        
+@enduml

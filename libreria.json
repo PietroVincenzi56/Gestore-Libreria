@@ -3,20 +3,20 @@
   "autore" : "Pietro",
   "isbn" : "123",
   "genere" : "Giallo",
-  "score" : 5,
+  "score" : 4,
   "stato" : "LETTO"
 }, {
-  "titolo" : "Prova2",
-  "autore" : "a",
-  "isbn" : "1243",
-  "genere" : "Saggio",
-  "score" : 2,
-  "stato" : "LETTO"
-}, {
-  "titolo" : "Ingegneria",
-  "autore" : "Gigi",
+  "titolo" : "Prova3",
+  "autore" : "Mario Rossi",
   "isbn" : "54234",
   "genere" : "manuale",
   "score" : 1,
+  "stato" : "IN_LETTURA"
+}, {
+  "titolo" : "Prova2",
+  "autore" : "scrittore",
+  "isbn" : "1243",
+  "genere" : "Giallo",
+  "score" : 2,
   "stato" : "DA_LEGGERE"
 } ]
